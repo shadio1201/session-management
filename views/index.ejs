@@ -1,0 +1,40 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forside - login</title>
+</head>
+<body>
+    <form class="login">
+        <input type="text" class="username" name="username" required placeholder="Username">
+        <input type="text" class="password" name="password" required placeholder="Password">
+        <button class="submit" type="submit">Submit</button>
+    </form>
+
+    <script>
+
+        document.querySelector('.login').addEventListener('submit', (e)=> {
+            e.preventDefault();
+
+            let username = document.querySelector('.username').value
+            let password = document.querySelector('.password').value
+
+            getData(username, password)
+        })
+       async function getData(login, password) {
+
+            const response = await fetch('http://localhost:3000/test', { 
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                login, 
+                password
+            })
+            })
+        }
+    </script>
+</body>
+</html>
